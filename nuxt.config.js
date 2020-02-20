@@ -1,10 +1,12 @@
+import apiHandler from './api'
+
 export default {
   mode: 'universal',
   /*
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Closer',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -28,6 +30,7 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [],
+  serverMiddleware: [apiHandler],
   /*
    ** Nuxt.js dev-modules
    */
