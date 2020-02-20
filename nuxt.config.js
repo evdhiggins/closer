@@ -38,7 +38,9 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
-    '@nuxtjs/stylelint-module'
+    '@nuxtjs/stylelint-module',
+    // Doc: https://github.com/nuxt-community/localforage-module
+    '@nuxtjs/localforage'
   ],
   /*
    ** Nuxt.js modules
