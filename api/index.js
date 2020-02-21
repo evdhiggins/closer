@@ -1,5 +1,6 @@
 import express from 'express'
 import axios from 'axios'
+import * as faker from 'faker'
 require('dotenv').config()
 const app = express()
 
@@ -29,8 +30,7 @@ app.get('/location', async (req, res) => {
     const results = data.results.map((result) => {
       const location = {
         id: result.place_id,
-        address: result.formatted_address,
-        geometry: result.geometry
+        address: result.formatted_address
       }
 
       if (result.geometry && result.geometry.bounds) {
@@ -53,6 +53,18 @@ app.get('/location', async (req, res) => {
     console.error(err.message)
     res.status(500).send({ error: err.message })
   }
+})
+
+app.get('/fake-location', (req, res) => {
+  const location = {
+    address: `${faker.address.streetAddress()}, ${faker.address.city()}, ${faker.address.stateAbbr()} ${faker.address.zipCode()}`,
+    id: Math.random(),
+    name: faker.company.catchPhrase(),
+    lat: faker.address.latitude(),
+    lng: faker.address.longitude()
+  }
+
+  return res.send(location)
 })
 
 export default {

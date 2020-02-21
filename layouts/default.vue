@@ -19,9 +19,19 @@
             </a>
           </div>
           <div class="navbar-menu" :class="isMobileNavOpen ? 'is-active' : ''">
+            <div class="navbar-start">
+              <a
+                v-for="tab in leftTabs"
+                :key="`tt${tab.url}`"
+                class="navbar-item"
+                :class="$route.path === tab.url ? 'is-active' : ''"
+                @click="clickNavItem(tab.url)"
+                >{{ tab.label }}</a
+              >
+            </div>
             <div class="navbar-end">
               <a
-                v-for="tab in topTabs"
+                v-for="tab in rightTabs"
                 :key="`tt${tab.url}`"
                 class="navbar-item"
                 :class="$route.path === tab.url ? 'is-active' : ''"
@@ -38,21 +48,6 @@
         <nuxt />
       </div>
     </div>
-    <div class="hero-foot">
-      <nav class="tabs is-boxed is-fullwidth">
-        <div class="container">
-          <ul>
-            <li
-              v-for="tab in bottomTabs"
-              :key="`bt${tab.url}`"
-              :class="$route.path === tab.url ? 'is-active' : ''"
-            >
-              <a @click="clickNavItem(tab.url)">{{ tab.label }}</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
   </section>
 </template>
 
@@ -61,7 +56,7 @@ export default {
   data() {
     return {
       isMobileNavOpen: false,
-      topTabs: [
+      leftTabs: [
         {
           url: '/',
           label: 'Home'
@@ -75,18 +70,18 @@ export default {
           label: 'Contact'
         }
       ],
-      bottomTabs: [
+      rightTabs: [
         {
           url: '/closer',
           label: 'Get closer'
         },
         {
-          url: '/location-sets',
-          label: 'Location sets'
+          url: '/locations',
+          label: 'Locations'
         },
         {
-          url: '/locaitons',
-          label: 'Locations'
+          url: '/location-groups',
+          label: 'Location groups'
         }
       ]
     }

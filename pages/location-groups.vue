@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section class="container">
     <h1 class="title">Location sets</h1>
     <b-button
       type="is-primary"
@@ -12,28 +12,16 @@
     >
       New
     </b-button>
-    <div class="columns">
+    <div class="columns is-centered location-set-container">
       <div
-        v-for="set in locationSets"
-        :key="`ls${set.id}`"
-        class="column is-4 card"
+        class="column is-full-mobile is-three-quarters-tablet is-two-thirds-desktop"
       >
-        <header class="card-header">
-          <div class="card-header-title">{{ set.name }}</div>
-        </header>
-        <div class="card-content">
-          The location set's description
-        </div>
-        <footer class="card-footer">
-          <n-link class="card-footer-item" :to="`/location-sets/${set.id}`"
-            >Edit</n-link
-          >
-          <a
-            class="card-footer-item"
-            @click="deleteLocationSet(set.id, set.name)"
-            >Delete</a
-          >
-        </footer>
+        <location-set-card
+          v-for="set in locationSets"
+          :id="set.id"
+          :key="`ls${set.id}`"
+          :name="set.name"
+        />
       </div>
     </div>
     <!-- <pre>{{ locationSets }}</pre> -->
@@ -41,8 +29,13 @@
 </template>
 
 <script>
+import LocationSetCard from '~/components/LocationSetCard'
+
 export default {
   name: 'LocationSetsPage',
+  components: {
+    LocationSetCard
+  },
   computed: {
     locationSets() {
       return this.$store.getters.locationSets
@@ -69,3 +62,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.location-set-container {
+  margin-top: 2rem;
+}
+</style>
