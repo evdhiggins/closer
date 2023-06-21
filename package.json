@@ -26,7 +26,7 @@
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/localforage": "^1.1.0",
     "@nuxtjs/pwa": "^3.0.0-0",
-    "nuxt": "^2.0.0",
+    "nuxt": "^3.4.3",
     "nuxt-buefy": "^0.3.2"
   },
   "devDependencies": {
